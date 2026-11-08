@@ -1,4 +1,48 @@
 .root {
-  @apply flex bg-slate-300 flex-wrap
-  w-[var(--board-size)] h-[var(--board-size)];
+  @apply flex min-h-screen flex-col items-center justify-center gap-5 bg-slate-950 p-4 text-slate-100;
+}
+
+.header {
+  @apply flex w-full max-w-[500px] flex-wrap items-end justify-between gap-3;
+}
+
+.title {
+  @apply text-2xl font-bold tracking-tight;
+}
+
+.subtitle {
+  @apply mt-1 text-sm text-slate-400;
+}
+
+.controls {
+  @apply flex items-center gap-2;
+}
+
+.seed {
+  @apply rounded-md border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-300 transition-colors hover:border-slate-500 hover:text-white;
+}
+
+.button {
+  @apply rounded-md bg-emerald-500 px-3 py-2 text-sm font-semibold text-slate-950 transition-colors hover:bg-emerald-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-300;
+}
+
+.board {
+  @apply grid aspect-square w-full gap-[2px] rounded-lg border border-slate-800 bg-slate-800 p-[2px] shadow-2xl shadow-black/50;
+  grid-auto-rows: 1fr;
+}
+
+.row {
+  display: contents;
+}
+
+.legend {
+  @apply flex flex-wrap items-center gap-4 text-xs text-slate-400;
+}
+
+.legendItem {
+  @apply inline-flex items-center gap-1.5;
+}
+
+.legendSwatch {
+  @apply inline-block h-3 w-3 rounded-sm;
 }

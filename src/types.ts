@@ -1,35 +1,28 @@
-import { type BlockType, type Dimension } from "./enums";
+import { type BlockType } from "./enums";
 
 export type BlockId = string;
-// ============================================
 
 export type CellT = {
   row: number;
   col: number;
-  blockId?: BlockId;
+  /** `null` means this cell is intentionally empty (void). */
+  blockId: BlockId | null;
 };
 
 export type Block = {
   id: BlockId;
   type: BlockType;
-  // dimension: Dimension;
+  /** Distance from the start room, in room-to-room steps. */
+  depth: number;
   filledCells: CellT[];
   color: string;
 };
 
-// ============================================
-
 export type Blocks = Record<BlockId, Block>;
 
-// like a matrix
-/**
- * a b c d
- * e f g h
- */
-// each row represents an option
-// each col represents a cell
-
-// export type BlockOption = Pick<Block, "dimension"> & CellT;
-export type BlockOption = CellT;
-
-export type BlockOptions = Record<Dimension, BlockOption[][]>;
+export type BoardState = {
+  cells: CellT[][];
+  blocks: Blocks;
+  startBlockId: BlockId;
+  endBlockId: BlockId | null;
+};

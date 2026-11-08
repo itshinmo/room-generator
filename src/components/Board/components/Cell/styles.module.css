@@ -1,6 +1,4 @@
 .root {
-  --background-color: black;
-  --cell-size: 0;
-  @apply flex items-center justify-center text-white text-3xl font-black
-  bg-[var(--background-color)] w-[var(--cell-size)] h-[var(--cell-size)];
+  @apply flex min-h-0 min-w-0 select-none items-center justify-center rounded-[2px] bg-slate-900 font-black text-white;
+  font-size: clamp(0.6rem, 3vmin, 1.05rem);
 }

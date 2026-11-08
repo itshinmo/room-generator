@@ -1,4 +1,3 @@
-import { CELL_SIZE } from "../../../../config";
 import { BlockType } from "../../../../enums";
 import { type Blocks, type CellT } from "../../../../types";
 import classes from "./styles.module.css";
@@ -8,46 +7,37 @@ type Props = {
   blocks: Blocks;
 };
 
+const LABELS: Partial<Record<BlockType, string>> = {
+  [BlockType.START]: "S",
+  [BlockType.END]: "E",
+};
+
+const getAriaLabel = (type: BlockType | undefined): string => {
+  switch (type) {
+    case BlockType.START:
+      return "Start room";
+    case BlockType.END:
+      return "End room";
+    case BlockType.ROOM:
+      return "Room";
+    default:
+      return "Empty space";
+  }
+};
+
 const Cell = (props: Props) => {
   const { cell, blocks } = props;
-
-  if (!cell.blockId) {
-    return (
-      <div
-        id={`${cell.row}-${cell.col}`}
-        // @ts-expect-error sending variable.
-        style={{ "--cell-size": `${CELL_SIZE}px` }}
-        className={classes["root"]}
-      ></div>
-    );
-  }
-
-  const cellBlock = blocks[cell.blockId]!;
-
-  const renderCellText = () => {
-    switch (cellBlock.type) {
-      case BlockType.START: {
-        return "S";
-      }
-      case BlockType.END: {
-        return "E";
-      }
-      default:
-        return;
-    }
-  };
+  const block = cell.blockId ? blocks[cell.blockId] : undefined;
+  const label = block ? LABELS[block.type] : undefined;
 
   return (
     <div
-      id={`${cell.row}-${cell.col}`}
-      style={{
-        // @ts-expect-error sending variable.
-        "--background-color": cellBlock.color,
-        "--cell-size": `${CELL_SIZE}px`,
-      }}
-      className={classes["root"]}
+      role="gridcell"
+      aria-label={getAriaLabel(block?.type)}
+      className={classes.root}
+      style={block ? { backgroundColor: block.color } : undefined}
     >
-      {renderCellText()}
+      {label ?? null}
     </div>
   );
 };

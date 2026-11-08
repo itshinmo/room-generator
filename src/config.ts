@@ -2,11 +2,13 @@
 export const COLS = 11;
 export const ROWS = 11;
 
+// Maximum rendered board width, in pixels.
 export const BOARD_SIZE = 500;
 
-// === === ===
-export const MAX_BLOCKS = 15;
-export const NULL_COUNT = 2;
+// Includes the start and end rooms.
+export const MAX_ROOMS = 15;
 
-// AUTO CALCULATED !
-export const CELL_SIZE = BOARD_SIZE / COLS;
+// Chance of leaving a frontier cell empty instead of placing a room.
+// Skipping is only allowed while another frontier cell exists, so a map can
+// never terminate with only the start room.
+export const GAP_CHANCE = 0.15;
