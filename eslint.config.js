@@ -5,7 +5,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist"] },
+  { ignores: ["dist", "coverage"] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
@@ -27,8 +27,6 @@ export default tseslint.config(
       "no-console": "warn",
       "prefer-const": "error",
       "default-case": "warn",
-      "react/prop-types": "off",
-      "react/react-in-jsx-scope": "off",
       "@typescript-eslint/consistent-type-imports": [
         "error",
         { fixStyle: "inline-type-imports" },
